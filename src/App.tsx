@@ -1,7 +1,24 @@
 import React from "react";
+import Comment from "src/components/Comment";
+import { useComments } from "src/contexts/CommentsContext";
 
 const App: React.FC = () => {
-  return <h1 className="text-3xl font-bold underline">Hello world!</h1>;
+  const { comments } = useComments();
+
+  return (
+    <div className="bg-gray-100 grow max-w-screen-lg max-h-[864px] p-8 rounded-lg overflow-x-auto">
+      {comments.map((comment) => (
+        <Comment
+          key={comment.id}
+          id={comment.id}
+          author={comment.author}
+          text={comment.text}
+          timestamp={comment.timestamp}
+          numberOfReplies={comment.numberOfReplies}
+        />
+      ))}
+    </div>
+  );
 };
 
 export default App;
