@@ -1,4 +1,6 @@
+import TextWithLinks from "src/components/TextWithLinks";
 import { TComment } from "src/types/TComment";
+import { getTimeFromTimestamp } from "src/utils/getTimeFromTimestamp";
 
 const Comment: React.FC<TComment> = ({
   id,
@@ -7,21 +9,6 @@ const Comment: React.FC<TComment> = ({
   timestamp,
   numberOfReplies = 0,
 }) => {
-  const getTimeFromTimestamp = (timestamp: number) => {
-    const date = new Date(timestamp);
-    let hours = date.getHours();
-    const minutes = date.getMinutes();
-
-    const ampm = hours >= 12 ? "PM" : "AM";
-    hours = hours % 12;
-    hours = hours ? hours : 12;
-
-    const hoursWithLeadingZero = String(hours).padStart(2, "0");
-    const minutesWithLeadingZero = String(minutes).padStart(2, "0");
-
-    return `${hoursWithLeadingZero}:${minutesWithLeadingZero} ${ampm}`;
-  };
-
   return (
     <div className="flex gap-3" key={`${timestamp}-${id}`}>
       <img
@@ -35,7 +22,7 @@ const Comment: React.FC<TComment> = ({
             {name}
           </div>
           <div className="text-gray-700 text-lg font-medium leading-normal">
-            {text}
+            <TextWithLinks content={text} timestamp={timestamp} />
           </div>
         </div>
         <div className="flex flex-row gap-5">

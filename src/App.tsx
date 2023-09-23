@@ -6,10 +6,10 @@ const App: React.FC = () => {
   const { comments } = useComments();
 
   return (
-    <div className="bg-gray-100 grow max-w-screen-lg max-h-[864px] p-8 rounded-lg overflow-x-auto">
+    <div className="bg-gray-100 grow max-w-screen-lg max-h-[864px] p-8 rounded-lg overflow-x-auto flex flex-col gap-6">
       {comments.map((comment) => (
         <Comment
-          key={comment.id}
+          key={`comment-${comment.id}-${comment.author.name}-${comment.timestamp}`}
           id={comment.id}
           author={comment.author}
           text={comment.text}

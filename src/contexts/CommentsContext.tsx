@@ -24,8 +24,6 @@ export const CommentsProvider: React.FC<TCommentsContextProviderProps> = ({
       const response = await fetch("comments.json");
       const comments = (await response.json()) as TResponse;
 
-      console.log(comments);
-
       setComments(comments.data.comments);
     } catch (error) {
       console.error(error);
