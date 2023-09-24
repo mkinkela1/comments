@@ -42,11 +42,26 @@ export const CommentsProvider: React.FC<TCommentsContextProviderProps> = ({
     }
   };
 
+  const getNumberOfReplies = (comments: TComment[], index: number) => {
+    let replyIndex = index + 1;
+
+    // find next index for placing the reply
+    for (
+      ;
+      replyIndex < comments.length &&
+      +comments[replyIndex].id > +comments[index].id;
+      replyIndex++
+    );
+
+    return replyIndex - index - 1;
+  };
+
   const updateComments = (comments: TComment[]) => {
     setComments(
       comments.map((comment, index) => ({
         ...comment,
         isFirstReply: comment.parent_id === comments[index - 1]?.id,
+        numberOfReplies: getNumberOfReplies(comments, index),
       })),
     );
   };

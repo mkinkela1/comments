@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { useComments } from "src/contexts/CommentsContext";
+import { isNotEmpty } from "src/utils/isNotEmpty";
 import { isNotNullOrUndefined } from "src/utils/isNullOrUndefined";
 
 type Props = {
@@ -12,9 +13,11 @@ const TextInput: React.FC<Props> = ({ onSubmit }) => {
 
   const handleSubmit = () => {
     if (inputRef.current) {
-      onSubmit(inputRef.current.value);
-      inputRef.current.value = "";
-      resetReplyTo();
+      if (isNotEmpty(inputRef.current.value)) {
+        onSubmit(inputRef.current.value);
+        inputRef.current.value = "";
+        resetReplyTo();
+      }
     }
   };
 
