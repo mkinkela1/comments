@@ -8,7 +8,7 @@ const App: React.FC = () => {
 
   return (
     <div className="bg-gray-100 grow max-w-screen-lg max-h-[864px] rounded-lg flex flex-col">
-      <div className="grow overflow-x-auto overflow-y-auto p-8 pt-0 mr-4 scrollbar-track-gray-100 scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-rounded-lg scrollbar-thumb-rounded-lg">
+      <div className="grow overflow-x-auto overflow-y-auto p-8 pt-4 mr-4 scrollbar-track-gray-100 scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-rounded-lg scrollbar-thumb-rounded-lg">
         <CommentsList />
       </div>
       <div className="p-8 pt-0">

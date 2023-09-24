@@ -2,10 +2,13 @@ import Indent from "src/components/Indent";
 import TextWithLinks from "src/components/TextWithLinks";
 import { useComments } from "src/contexts/CommentsContext";
 import { TComment } from "src/types/TComment";
+import { getDateFromTimestamp } from "src/utils/getDateFromTimestamp";
 import { getTimeFromTimestamp } from "src/utils/getTimeFromTimestamp";
 import { isNotNullOrUndefined } from "src/utils/isNullOrUndefined";
 
-const Comment: React.FC<TComment & { index: number }> = ({
+const Comment: React.FC<
+  TComment & { index: number; showFullDate: boolean }
+> = ({
   id,
   parent_id,
   author: { name, picture },
@@ -14,9 +17,15 @@ const Comment: React.FC<TComment & { index: number }> = ({
   isFirstReply,
   index,
   numberOfReplies = 0,
+  showFullDate,
 }) => {
   const { setReplyTo } = useComments();
   const indent = isNotNullOrUndefined(parent_id) ? +parent_id : 0;
+
+  const commentTime = `${
+    showFullDate ? getDateFromTimestamp(timestamp) : ""
+  } ${getTimeFromTimestamp(timestamp)}`.trim();
+
   return (
     <div className="flex" key={`${timestamp}-${id}`}>
       <Indent
@@ -42,7 +51,7 @@ const Comment: React.FC<TComment & { index: number }> = ({
           </div>
           <div className="flex flex-row gap-5">
             <div className="text-gray-700 text-base font-medium leading-normal">
-              {getTimeFromTimestamp(timestamp)}
+              {commentTime}
             </div>
             <div
               className="text-blue text-base font-medium leading-normal"

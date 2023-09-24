@@ -5,7 +5,7 @@ type Props = {
 };
 
 const DateSeparator: React.FC<Props> = ({ timestamp }) => (
-  <div className="flex w-full grow justify-center text-gray-700 leading-normal text-[0.8125rem] font-medium py-[2.625rem]">
+  <div className="flex w-full grow justify-center text-gray-700 leading-normal text-[0.8125rem] font-medium py-[1.125rem]">
     {getDateFromTimestamp(timestamp)}
   </div>
 );
