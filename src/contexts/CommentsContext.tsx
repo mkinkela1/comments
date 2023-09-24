@@ -90,7 +90,7 @@ export const CommentsProvider: React.FC<TCommentsContextProviderProps> = ({
 
   const addNewComment = (text: string) => {
     const id = isNotNullOrUndefined(replyTo?.id)
-      ? `${parseInt(replyTo?.id) + 1}`
+      ? `${parseInt(replyTo?.id ?? "") + 1}`
       : "1";
     const parent_id = replyTo?.id ?? undefined;
 
