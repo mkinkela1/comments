@@ -16,6 +16,7 @@ type TCommentsContextContext = {
   addNewComment: (text: string) => void;
   replyTo: TReply | null;
   setReplyTo: (val: TReply) => void;
+  resetReplyTo: () => void;
 };
 
 type TCommentsContextProviderProps = {
@@ -100,9 +101,13 @@ export const CommentsProvider: React.FC<TCommentsContextProviderProps> = ({
     }
   };
 
+  const resetReplyTo = () => {
+    _setReplyTo(null);
+  };
+
   return (
     <CommentsContext.Provider
-      value={{ comments, addNewComment, replyTo, setReplyTo }}
+      value={{ comments, addNewComment, replyTo, setReplyTo, resetReplyTo }}
     >
       {children}
     </CommentsContext.Provider>
