@@ -35,26 +35,24 @@ const TextInput: React.FC<Props> = ({ onSubmit }) => {
 
   return (
     <div
-      className={`flex flex-row w-full bg-white border ${
+      className={`flex flex-row bg-white border ${
         isError ? "border-red-500" : "border-gray-300"
       } rounded-lg p-2 gap-4`}
     >
-      <button className="bg-blue hover:bg-blue-700 text-white rounded-lg">
+      <button className="bg-blue hover:bg-blue-700 text-white rounded-lg flex items-center justify-center">
         <img src="img/plus.svg" alt="plus" className="w-6 h-6 m-4" />
       </button>
-      <div className="flex grow">
-        <input
-          ref={inputRef}
-          className="grow text-gray-900 text-lg font-medium leading-normal focus:outline-0"
-          placeholder="Type a message..."
-        />
-      </div>
+      <input
+        ref={inputRef}
+        className="grow text-gray-900 text-lg font-medium leading-normal focus:outline-0"
+        placeholder="Type a message..."
+      />
       <button
         className="bg-blue hover:bg-blue-700 text-white rounded-lg flex flex-row items-center p-4"
         onClick={handleSubmit}
       >
         <img src="img/send.svg" alt="plus" className="w-6 h-6 mr-3" />
-        <span className="font-semibold leading-normal text-base">
+        <span className="font-semibold leading-normal text-base hidden md:flex">
           {isNotNullOrUndefined(replyTo)
             ? `Reply to ${replyTo.author.name}`
             : "Send message"}
