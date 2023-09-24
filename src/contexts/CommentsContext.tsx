@@ -45,7 +45,6 @@ export const CommentsProvider: React.FC<TCommentsContextProviderProps> = ({
   const getNumberOfReplies = (comments: TComment[], index: number) => {
     let replyIndex = index + 1;
 
-    // find next index for placing the reply
     for (
       ;
       replyIndex < comments.length &&
