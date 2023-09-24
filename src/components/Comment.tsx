@@ -1,18 +1,21 @@
 import Indent from "src/components/Indent";
 import TextWithLinks from "src/components/TextWithLinks";
+import { useComments } from "src/contexts/CommentsContext";
 import { TComment } from "src/types/TComment";
 import { getTimeFromTimestamp } from "src/utils/getTimeFromTimestamp";
-import { isNotNullOrUndefined } from "../utils/isNullOrUndefined";
+import { isNotNullOrUndefined } from "src/utils/isNullOrUndefined";
 
-const Comment: React.FC<TComment> = ({
+const Comment: React.FC<TComment & { index: number }> = ({
   id,
   parent_id,
   author: { name, picture },
   text,
   timestamp,
   isFirstReply,
+  index,
   numberOfReplies = 0,
 }) => {
+  const { setReplyTo } = useComments();
   const indent = isNotNullOrUndefined(parent_id) ? +parent_id : 0;
   return (
     <div className="flex" key={`${timestamp}-${id}`}>
@@ -41,7 +44,17 @@ const Comment: React.FC<TComment> = ({
             <div className="text-gray-700 text-base font-medium leading-normal">
               {getTimeFromTimestamp(timestamp)}
             </div>
-            <div className="text-blue text-base font-medium leading-normal">
+            <div
+              className="text-blue text-base font-medium leading-normal"
+              onClick={() =>
+                setReplyTo({
+                  id,
+                  parent_id,
+                  author: { name, picture },
+                  replyIndex: index,
+                })
+              }
+            >
               Reply {numberOfReplies > 0 && `(${numberOfReplies})`}
             </div>
           </div>
