@@ -14,7 +14,7 @@ const CommentsList: React.FC = () => {
     if (index === 0) return true;
 
     if (comment.id === "1") {
-      const previousComment = comments.find(
+      const previousComment = comments.findLast(
         (comment, prevIndex) => comment.id === "1" && prevIndex < index,
       );
 
