@@ -7,7 +7,7 @@ const App: React.FC = () => {
   const { addNewComment } = useComments();
 
   return (
-    <div className="bg-gray-100 grow w-screen max-w-screen-lg max-h-[100dvh] rounded-lg flex flex-col">
+    <div className="bg-gray-100 grow w-screen max-w-screen-lg max-h-[100dvh] h-[864px] rounded-lg flex flex-col">
       <div className="grow overflow-x-auto overflow-y-auto p-8 pt-4 mr-4 scrollbar-track-gray-100 scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-rounded-lg scrollbar-thumb-rounded-lg">
         <CommentsList />
       </div>
