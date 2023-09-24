@@ -6,7 +6,8 @@ type Props = {
 };
 
 const urlWithProtocolRegex =
-  /(\b(https?|ftp):\/\/[-A-Z0-9+&@#/%?=~_|!:,.;]*[-A-Z0-9+&@#/%=~_|])/gm;
+  /^(https?:\/\/)?(www\.)?[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(\/\S*)?$/gm;
+
 const urlWithoutProtocolRegex = /(^|[^/])(www\.[\S]+(\b|$))/gm;
 const emailRegex = /(([a-zA-Z0-9\-_.])+@[a-zA-Z_]+?(\.[a-zA-Z]{2,6})+)/gm;
 

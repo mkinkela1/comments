@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useComments } from "src/contexts/CommentsContext";
 import { isNotEmpty } from "src/utils/isNotEmpty";
 import { isNotNullOrUndefined } from "src/utils/isNullOrUndefined";
@@ -10,6 +10,7 @@ type Props = {
 const TextInput: React.FC<Props> = ({ onSubmit }) => {
   const { replyTo, resetReplyTo } = useComments();
   const inputRef = useRef<HTMLInputElement>(null);
+  const [isError, setIsError] = useState(false);
 
   const handleSubmit = () => {
     if (inputRef.current) {
@@ -17,6 +18,9 @@ const TextInput: React.FC<Props> = ({ onSubmit }) => {
         onSubmit(inputRef.current.value);
         inputRef.current.value = "";
         resetReplyTo();
+        setIsError(false);
+      } else {
+        setIsError(true);
       }
     }
   };
@@ -26,10 +30,15 @@ const TextInput: React.FC<Props> = ({ onSubmit }) => {
       inputRef.current.value = "";
     }
     resetReplyTo();
+    setIsError(false);
   };
 
   return (
-    <div className="flex flex-row w-full bg-white border border-gray-300 rounded-lg p-2 gap-4">
+    <div
+      className={`flex flex-row w-full bg-white border ${
+        isError ? "border-red-500" : "border-gray-300"
+      } rounded-lg p-2 gap-4`}
+    >
       <button className="bg-blue hover:bg-blue-700 text-white rounded-lg">
         <img src="img/plus.svg" alt="plus" className="w-6 h-6 m-4" />
       </button>
