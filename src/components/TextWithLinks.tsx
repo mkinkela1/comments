@@ -15,21 +15,21 @@ const TextWithLinks: React.FC<Props> = ({ content, timestamp }) => {
   const words = content.split(" ");
 
   const convertToAnchor = (word: string) => {
-    if (word.match(urlWithProtocolRegex))
-      return (
-        <a
-          className="text-blue text-lg font-medium leading-normal"
-          href={word}
-          target="_blank"
-        >
-          {word}
-        </a>
-      );
     if (word.match(urlWithoutProtocolRegex))
       return (
         <a
           className="text-blue text-lg font-medium leading-normal"
           href={`https://${word}`}
+          target="_blank"
+        >
+          {word}
+        </a>
+      );
+    if (word.match(urlWithProtocolRegex))
+      return (
+        <a
+          className="text-blue text-lg font-medium leading-normal"
+          href={word}
           target="_blank"
         >
           {word}
