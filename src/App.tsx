@@ -1,5 +1,6 @@
 import React from "react";
 import Comment from "src/components/Comment";
+import TextInput from "src/components/TextInput";
 import { useComments } from "src/contexts/CommentsContext";
 
 const App: React.FC = () => {
@@ -17,6 +18,7 @@ const App: React.FC = () => {
           numberOfReplies={comment.numberOfReplies}
         />
       ))}
+      <TextInput />
     </div>
   );
 };
