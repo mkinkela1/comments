@@ -10,12 +10,18 @@ const Comment: React.FC<TComment> = ({
   author: { name, picture },
   text,
   timestamp,
+  isFirstReply,
   numberOfReplies = 0,
 }) => {
   const indent = isNotNullOrUndefined(parent_id) ? +parent_id : 0;
   return (
     <div className="flex" key={`${timestamp}-${id}`}>
-      <Indent id={id} timestamp={timestamp} indent={indent} />
+      <Indent
+        id={id}
+        timestamp={timestamp}
+        indent={indent}
+        isFirstReply={isFirstReply}
+      />
       <div className="flex flex-row gap-3 pt-6">
         <img
           src={picture}

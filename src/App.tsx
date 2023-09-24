@@ -16,6 +16,7 @@ const App: React.FC = () => {
           author={comment.author}
           text={comment.text}
           timestamp={comment.timestamp}
+          isFirstReply={comment.isFirstReply}
           numberOfReplies={comment.numberOfReplies}
         />
       ))}

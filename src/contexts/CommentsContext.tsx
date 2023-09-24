@@ -24,7 +24,13 @@ export const CommentsProvider: React.FC<TCommentsContextProviderProps> = ({
       const response = await fetch("comments.json");
       const comments = (await response.json()) as TResponse;
 
-      setComments(comments.data.comments);
+      setComments(
+        comments.data.comments.map((comment, index) => ({
+          ...comment,
+          isFirstReply:
+            comment.parent_id === comments.data.comments[index - 1]?.id,
+        })),
+      );
     } catch (error) {
       console.error(error);
     }
