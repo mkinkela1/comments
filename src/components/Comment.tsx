@@ -1,3 +1,4 @@
+import Indent from "src/components/Indent";
 import TextWithLinks from "src/components/TextWithLinks";
 import { TComment } from "src/types/TComment";
 import { getTimeFromTimestamp } from "src/utils/getTimeFromTimestamp";
@@ -14,18 +15,7 @@ const Comment: React.FC<TComment> = ({
   const indent = isNotNullOrUndefined(parent_id) ? +parent_id : 0;
   return (
     <div className="flex" key={`${timestamp}-${id}`}>
-      {Array.from({ length: indent }).map((_, index) => (
-        <div
-          key={`${timestamp}-${id}-${index}`}
-          className="w-12 flex justify-end mr-3"
-        >
-          <img
-            src="img/response.svg"
-            alt="first-response-icon"
-            className="w-6 h-12"
-          />
-        </div>
-      ))}
+      <Indent id={id} timestamp={timestamp} indent={indent} />
       <div className="flex flex-row gap-3 pt-6">
         <img
           src={picture}
