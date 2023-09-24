@@ -54,7 +54,7 @@ const Comment: React.FC<
               {commentTime}
             </div>
             <div
-              className="text-blue text-base font-medium leading-normal"
+              className="text-blue text-base font-medium leading-normal cursor-pointer"
               onClick={() =>
                 setReplyTo({
                   id,
